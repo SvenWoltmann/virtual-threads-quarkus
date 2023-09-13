@@ -27,7 +27,6 @@ public class SupplierService {
   }
 
   public CompletableFuture<Integer> getDeliveryTimeAsync(Supplier supplier, String productId) {
-    int deliveryTime = getDeliveryTime(supplier, productId);
-    return CompletableFuture.completedFuture(deliveryTime);
+    return CompletableFuture.supplyAsync(() -> getDeliveryTime(supplier, productId));
   }
 }

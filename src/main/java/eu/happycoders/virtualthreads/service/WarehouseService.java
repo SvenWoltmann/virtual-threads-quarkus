@@ -26,7 +26,6 @@ public class WarehouseService {
   }
 
   public CompletableFuture<Boolean> isAvailableAsync(String productId) {
-    boolean available = isAvailable(productId);
-    return CompletableFuture.completedFuture(available);
+    return CompletableFuture.supplyAsync(() -> isAvailable(productId));
   }
 }

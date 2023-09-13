@@ -35,7 +35,6 @@ public class ProductService {
   }
 
   public CompletableFuture<Optional<Product>> getProductAsync(String productId) {
-    Optional<Product> productData = getProduct(productId);
-    return CompletableFuture.completedFuture(productData);
+    return CompletableFuture.supplyAsync(() -> getProduct(productId));
   }
 }
