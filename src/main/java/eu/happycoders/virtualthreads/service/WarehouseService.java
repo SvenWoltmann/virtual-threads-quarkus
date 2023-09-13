@@ -9,11 +9,6 @@ import java.util.concurrent.ThreadLocalRandom;
 @ApplicationScoped
 public class WarehouseService {
 
-  // We're making this super-simple: a product is either available or not.
-  // In reality there are many more shades:
-  // - ships within X days
-  // - multiple delivery options to customer's address with different prices
-  // - ...
   public boolean isAvailable(String productId) {
     try {
       sleepApproximately(500);
