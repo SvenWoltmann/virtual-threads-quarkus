@@ -36,10 +36,10 @@ public class ControllerEvolution3_VirtualThreads {
   public ProductPageResponse getProduct(@PathParam("productId") String productId) {
     Product product = productService.getProduct(productId).orElseThrow(NotFoundException::new);
 
+    boolean available = warehouseService.isAvailable(productId);
+
     int shipsInDays =
-        warehouseService.isAvailable(productId)
-            ? 0
-            : supplierService.getDeliveryTime(product.supplier(), productId);
+        available ? 0 : supplierService.getDeliveryTime(product.supplier(), productId);
 
     return new ProductPageResponse(product, shipsInDays, Thread.currentThread().toString());
   }
